@@ -153,7 +153,7 @@ def index():
     logging.info('Metadata:\n{}'.format(dumps(meta)))
 
     # Skip push-delete
-    if event == 'push' and 'deleted' in payload:
+    if event == 'push' and payload['deleted']:
         logging.info('Skipping push-delete event for {}'.format(dumps(meta)))
         return dumps({'status': 'skipped'})
 
