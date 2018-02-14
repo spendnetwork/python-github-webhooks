@@ -125,6 +125,9 @@ def index():
             # branch
             branch = payload['pull_request']['base']['ref']
 
+        elif 'branch' in payload:
+            branch = payload['branch']
+
         elif event in ['push']:
             # Push events provide a full Git ref in 'ref' and not a 'ref_type'.
             branch = payload['ref'].split('/', 2)[2]
@@ -138,6 +141,9 @@ def index():
     # so let's be safe
     name = payload['repository']['name'] if 'repository' in payload else None
 
+    if 'name' in payload:
+        name = payload['name']
+
     meta = {
         'name': name,
         'branch': branch,
@@ -146,7 +152,7 @@ def index():
     logging.info('Metadata:\n{}'.format(dumps(meta)))
 
     # Skip push-delete
-    if event == 'push' and payload['deleted']:
+    if event == 'push' and 'deleted' in payload:
         logging.info('Skipping push-delete event for {}'.format(dumps(meta)))
         return dumps({'status': 'skipped'})
 
@@ -163,7 +169,6 @@ def index():
     scripts = [s for s in scripts if isfile(s) and access(s, X_OK)]
     if not scripts:
         return dumps({'status': 'nop'})
-
     # Save payload to temporal file
     osfd, tmpfile = mkstemp()
     with fdopen(osfd, 'w') as pf:
