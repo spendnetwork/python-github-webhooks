@@ -8,11 +8,9 @@ import git
 
 
 curdir = os.path.dirname(os.path.abspath(__file__))
+reporootdir = os.path.dirname(curdir)
+gitdir = os.path.dirname(reporootdir)
+docsdir = os.path.join(gitdir, 'docs')
 
-
-g = git.cmd.Git(curdir)
+g = git.cmd.Git(docsdir)
 g.pull()
-
-
-subp = subprocess.Popen(['git', 'pull'], cwd=curdir, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-subp.wait()
