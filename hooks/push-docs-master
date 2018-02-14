@@ -2,8 +2,6 @@
 # Python Example for Python GitHub Webhooks
 # File: push-myrepo-master
 import subprocess
-import sys
-import json
 import os
 
 import git
