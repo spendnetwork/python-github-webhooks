@@ -1,5 +1,5 @@
 ======================
-Python GitHub Webhooks
+Python GitHub Webhooks - OpenOpps
 ======================
 
 Simple Python WSGI application to handle GitHub webhooks.

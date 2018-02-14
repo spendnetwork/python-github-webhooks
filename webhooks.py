@@ -104,6 +104,7 @@ def index():
     # Gather data
     try:
         payload = request.get_json()
+        logging.info('Payload: %s' % payload)
     except Exception:
         logging.warning('Request parsing failed')
         abort(400)
