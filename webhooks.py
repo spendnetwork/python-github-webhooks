@@ -17,7 +17,7 @@
 
 import logging
 from sys import stderr, hexversion
-logging.basicConfig(stream=stderr, level=logging.DEBUG)
+logging.basicConfig(stream=stderr, level=logging.INFO)
 
 import hmac
 from hashlib import sha1
@@ -104,7 +104,7 @@ def index():
     # Gather data
     try:
         payload = request.get_json()
-        logging.info('Payload: %s' % payload)
+        logging.debug('Payload: %s' % payload)
     except Exception:
         logging.warning('Request parsing failed')
         abort(400)
