@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# Python Example for Python GitHub Webhooks
+# File: push-myrepo-master
+import subprocess
+import os
+
+import git
+
+
+curdir = os.path.dirname(os.path.abspath(__file__))
+
+g = git.cmd.Git(curdir)
+g.pull()
