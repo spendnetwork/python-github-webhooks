@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# Python Example for Python GitHub Webhooks
+# File: push-myrepo-master
+import logging
+import subprocess
+import os
+
+import git
+
+
+curdir = os.path.dirname(os.path.abspath(__file__))
+reporootdir = os.path.dirname(curdir)
+gitdir = os.path.dirname(reporootdir)
+
+repos = [
+    'openoppsdata',
+    'classification',
+    'pipeline',
+    'docs',
+]
+
+for repo in repos:
+    logging.info('Pulling %s', repo)
+    repo_dir = os.path.join(gitdir, repo)
+    g = git.cmd.Git(repo_dir)
+    g.pull()
+
+docs_dir = os.path.join(gitdir, 'docs')
+build_docs_path = os.path.join(gitdir, 'docs', 'build_docs.sh')
+p = subprocess.call(['bash', build_docs_path], stdout=subprocess.PIPE)
