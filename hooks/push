@@ -12,11 +12,17 @@ curdir = os.path.dirname(os.path.abspath(__file__))
 reporootdir = os.path.dirname(curdir)
 gitdir = os.path.dirname(reporootdir)
 
+# repos = [d for d in os.listdir(gitdir) if os.path.isdir(os.path.join(gitdir, d))]
+
 repos = [
+    'core',
     'openoppsdata',
     'classification',
     'pipeline',
     'docs',
+    'tender_etl_ocds',
+    'python-github-webhooks',
+    'ted_ocds_etl',
 ]
 
 for repo in repos:
