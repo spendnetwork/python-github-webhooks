@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+# Python Example for Python GitHub Webhooks
+# File: push-myrepo-master
+import logging
+import subprocess
+import os
+
+import git
+
+
+curdir = os.path.dirname(os.path.abspath(__file__))
+reporootdir = os.path.dirname(curdir)
+gitdir = os.path.dirname(reporootdir)
+
+repo = "openopps"
+# repo = "openoppscom"
+
+repo_dir = os.path.join(gitdir, repo)
+repo = git.Repo(repo_dir)
+g = git.cmd.Git(repo_dir)
+logging.info('Pulling master')
+repo.git.checkout("master")
+repo.git.pull()
+logging.info('Pulling %openopps_indexing')
+repo.git.checkout("openopps_indexing")
+repo.git.pull()
+
+
+cmd = "git rebase master openopps_indexing"
+logging.info('Running "%s"', cmd)
+p1 = subprocess.call(cmd, stdout=subprocess.PIPE, cwd=repo_dir, shell=True)
+print(p1)
+cmd = "git push origin openopps_indexing --force"
+logging.info('Running "%s"', cmd)
+p2 = subprocess.call(cmd, stdout=subprocess.PIPE, cwd=repo_dir, shell=True)
+print(p2)
+repo.git.checkout("master")
+
