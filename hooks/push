@@ -16,10 +16,12 @@ gitdir = os.path.dirname(reporootdir)
 
 repos = [
     'core',
+    'docs',
+    'openopps',
+    'openopps_indexing',
     'openoppsdata',
     'classification',
     'pipeline',
-    'docs',
     'tender_etl_ocds',
     'python-github-webhooks',
     'ted_ocds_etl',
