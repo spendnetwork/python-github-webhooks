@@ -2,6 +2,11 @@
 # Python Example for Python GitHub Webhooks
 # File: push-myrepo-master
 import logging
+import sys
+logging.basicConfig(stream=sys.stdout,
+                    level=logging.INFO,
+                    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+                    datefmt="%Y-%m-%dT%H:%M:%S")
 import subprocess
 import os
 

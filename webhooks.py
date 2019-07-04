@@ -17,7 +17,11 @@
 
 import logging
 from sys import stderr, hexversion
-logging.basicConfig(stream=stderr, level=logging.INFO)
+import sys
+logging.basicConfig(stream=sys.stderr,
+                    level=logging.INFO,
+                    format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+                    datefmt="%Y-%m-%dT%H:%M:%S")
 
 import hmac
 from hashlib import sha1
